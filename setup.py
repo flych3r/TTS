@@ -100,7 +100,7 @@ requirements = {
         "cardboardlint==1.3.0",
         "pylint==2.5.3",
         'fuzzywuzzy',
-        'gdown'
+        'gdown',
         'num2words'
     ],
     'pip_install':[
