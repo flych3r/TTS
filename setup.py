@@ -101,6 +101,7 @@ requirements = {
         "pylint==2.5.3",
         'fuzzywuzzy',
         'gdown'
+        'num2words'
     ],
     'pip_install':[
         'tensorflow==2.3.0rc0',

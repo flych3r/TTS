@@ -21,18 +21,25 @@ def make_symbols(characters, phonemes, punctuations='!\'(),-.:;? ', pad='_', eos
 _pad = '_'
 _eos = '~'
 _bos = '^'
-_characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!\'(),-.:;? '
-_punctuations = '!\'(),-.:;? '
+_characters = 'ABCDEFGHIJKLMçãàáâêéíóôõúûabcdefghijklmnopqrstuvwxyz!\'(),-.:;?* '
+_punctuations = '!*(),-.:;? '
 _phoneme_punctuations = '.!;:,?'
 
 # Phonemes definition
-_vowels = 'iyɨʉɯuɪʏʊeøɘəɵɤoɛœɜɞʌɔæɐaɶɑɒᵻ'
-_non_pulmonic_consonants = 'ʘɓǀɗǃʄǂɠǁʛ'
-_pulmonic_consonants = 'pbtdʈɖcɟkɡqɢʔɴŋɲɳnɱmʙrʀⱱɾɽɸβfvθðszʃʒʂʐçʝxɣχʁħʕhɦɬɮʋɹɻjɰlɭʎʟ'
-_suprasegmentals = 'ˈˌːˑ'
-_other_symbols = 'ʍwɥʜʢʡɕʑɺɧ'
-_diacrilics = 'ɚ˞ɫ'
-_phonemes = _vowels + _non_pulmonic_consonants + _pulmonic_consonants + _suprasegmentals + _other_symbols + _diacrilics
+# _vowels = 'iyɨʉɯuɪʏʊeøɘəɵɤoɛœɜɞʌɔæɐaɶɑɒᵻ'
+# _non_pulmonic_consonants = 'ʘɓǀɗǃʄǂɠǁʛ'
+# _pulmonic_consonants = 'pbtdʈɖcɟkɡqɢʔɴŋɲɳnɱmʙrʀⱱɾɽɸβfvθðszʃʒʂʐçʝxɣχʁħʕhɦɬɮʋɹɻjɰlɭʎʟ'
+# _suprasegmentals = 'ˈˌːˑ'
+# _other_symbols = 'ʍwɥʜʢʡɕʑɺɧ'
+# _diacrilics = 'ɚ˞ɫ'
+# _phonemes = _vowels + _non_pulmonic_consonants + _pulmonic_consonants + _suprasegmentals + _other_symbols + _diacrilics
+_phonemes = [
+    's', 'p', 'ɡ', 'ɪ', 'z', 'f', 'ʃ', 'ɫ', 'ᵻ', 'm', 'æ', 'x',
+    '̃', 'ː', 'r', 'ʒ', 'j', 'l', 't', 'ŋ', ';', 'i', 'ɐ', 'ɲ',
+    'ɑ', 'ɚ', 'w', 'd', 'n', 'h', 'u', 'e', 'ɬ', 'ɔ', 'ɾ', 'k',
+    'v', 'y', 'θ', 'ʎ', 'o', 'a', 'b', 'ə', 'ɹ', 'ʊ', 'ɛ', 'ʌ'
+]
+_phonemes = ''.join(_phonemes)
 
 symbols, phonemes = make_symbols(_characters, _phonemes, _punctuations, _pad, _eos, _bos)
 

@@ -18,27 +18,23 @@ from .number_norm import normalize_numbers
 _whitespace_re = re.compile(r'\s+')
 
 # List of (regular expression, replacement) pairs for abbreviations:
-_abbreviations = [(re.compile('\\b%s\\.' % x[0], re.IGNORECASE), x[1])
-                  for x in [
-                      ('mrs', 'misess'),
-                      ('mr', 'mister'),
-                      ('dr', 'doctor'),
-                      ('st', 'saint'),
-                      ('co', 'company'),
-                      ('jr', 'junior'),
-                      ('maj', 'major'),
-                      ('gen', 'general'),
-                      ('drs', 'doctors'),
-                      ('rev', 'reverend'),
-                      ('lt', 'lieutenant'),
-                      ('hon', 'honorable'),
-                      ('sgt', 'sergeant'),
-                      ('capt', 'captain'),
-                      ('esq', 'esquire'),
-                      ('ltd', 'limited'),
-                      ('col', 'colonel'),
-                      ('ft', 'fort'),
-                  ]]
+_abbreviations = [
+    (re.compile('\\b%s\\.' % x[0], re.IGNORECASE), x[1])
+    for x in [
+        ('sr', 'senhor'),
+        ('sra', 'senhora'),
+        ('dr', 'doctor'),
+        ('sto', 'santo'),
+        ('jr', 'junior'),
+        ('maj', 'major'),
+        ('gen', 'general'),
+        ('drs', 'doutores'),
+        ('rev', 'reverendo'),
+        ('ten', 'tenente'),
+        ('sarg', 'sargento'),
+        ('cap', 'capitão'),
+    ]
+]
 
 
 def expand_abbreviations(text):
@@ -72,7 +68,7 @@ def replace_symbols(text):
     text = text.replace(';', ',')
     text = text.replace('-', ' ')
     text = text.replace(':', ',')
-    text = text.replace('&', 'and')
+    text = text.replace('&', 'e')
     return text
 
 
