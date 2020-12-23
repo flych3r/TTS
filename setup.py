@@ -78,7 +78,7 @@ def pip_install(package_name):
 
 requirements = {
     'install_requires':[
-        "torch>=1.5",
+        "torch~=1.6",
         "numpy>=1.16.0",
         "numba==0.48",
         "scipy>=0.19.0",
