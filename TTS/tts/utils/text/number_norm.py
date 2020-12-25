@@ -1,10 +1,10 @@
 """ from https://github.com/keithito/tacotron """
 
-# import inflect
+import inflect
 from num2words import num2words
 import re
 
-# _inflect = inflect.engine()
+_inflect = inflect.engine()
 _comma_number_re = re.compile(r'([0-9][0-9\,]+[0-9])')
 _decimal_number_re = re.compile(r'([0-9]+\.[0-9]+)')
 # _pounds_re = re.compile(r'£([0-9\,]*[0-9]+)')
@@ -32,7 +32,7 @@ def _expand_reais(m):
     if reais and centavos:
         dollar_unit = 'real' if reais == 1 else 'reais'
         cent_unit = 'centavo' if centavos == 1 else 'centavos'
-        return '%s %s, %s %s' % (reais, dollar_unit, centavos, cent_unit)
+        return '%s %s e %s %s' % (reais, dollar_unit, centavos, cent_unit)
     elif reais:
         dollar_unit = 'real' if reais == 1 else 'reais'
         return '%s %s' % (reais, dollar_unit)

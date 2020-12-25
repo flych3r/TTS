@@ -60,7 +60,7 @@ def convert_to_ascii(text):
 
 
 def remove_aux_symbols(text):
-    text = re.sub(r'[\<\>\(\)\[\]\"]+', '', text)
+    text = re.sub(r'[\<\>\(\)\[\]\"]+', ' ', text)
     return text
 
 
@@ -110,7 +110,7 @@ def english_cleaners(text):
 
 def phoneme_cleaners(text):
     '''Pipeline for phonemes mode, including number and abbreviation expansion.'''
-    text = convert_to_ascii(text)
+    # text = convert_to_ascii(text)
     text = expand_numbers(text)
     text = expand_abbreviations(text)
     text = replace_symbols(text)
