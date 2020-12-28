@@ -93,18 +93,17 @@ requirements = {
         "inflect",
         "pysbd",
         "bokeh==1.4.0",
-        "pysbd",
         "soundfile",
         "phonemizer>=2.2.0",
+        "fuzzywuzzy",
+        "gdown",
+        "num2words",
         "nose==1.3.7",
         "cardboardlint==1.3.0",
         "pylint==2.5.3",
-        'fuzzywuzzy',
-        'gdown',
-        'num2words'
     ],
     'pip_install':[
-        'tensorflow==2.3.0rc0',
+        "tensorflow==2.3.0rc0",
     ]
 }
 
