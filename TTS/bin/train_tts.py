@@ -398,6 +398,8 @@ def evaluate(model, criterion, ap, global_step, epoch):
         else:
             with open(c.test_sentences_file, "r") as f:
                 test_sentences = [s.strip() for s in f.readlines()]
+                if 'n_test_sentences' in c and c.n_test_sentences:
+                    test_sentences = test_sentences[:c.n_test_sentences]
 
         # test sentences
         test_audios = {}
