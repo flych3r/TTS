@@ -10,6 +10,7 @@ _decimal_number_re = re.compile(r'([0-9]+\.[0-9]+)')
 # _pounds_re = re.compile(r'£([0-9\,]*[0-9]+)')
 # _dollars_re = re.compile(r'\$([0-9\.\,]*[0-9]+)')
 _reais_re = re.compile(r'R\$([0-9\.\,]*[0-9]+)')
+_time_re = re.compile(r'([0-9]+\:[0-9]+)')
 _ordinal_re = re.compile(r'[0-9]+(º|ª)')
 _number_re = re.compile(r'[0-9]+')
 
@@ -43,6 +44,18 @@ def _expand_reais(m):
         return 'zero reais'
 
 
+def _expand_horas(h):
+    match = h.group(0)
+    parts = match.split(':')
+    if len(parts) > 2:
+        return match + ' horas'  # Unexpected format
+    horas = int(parts[0]) if parts[0] else 0
+    minutos = int(parts[1]) if len(parts) > 1 and parts[1] else 0
+    if horas and minutos:
+        return '%s horas e %s minutos' % (horas, minutos)
+    return '%s horas' % (horas)
+
+
 def _expand_ordinal(m):
     return _inflect.number_to_words(m.group(0))
 
@@ -67,6 +80,7 @@ def _expand_number(m):
 def normalize_numbers(text):
     text = re.sub(_comma_number_re, _remove_commas, text)
     text = re.sub(_reais_re, _expand_reais, text)
+    text = re.sub(_time_re, _expand_horas, text)
     text = re.sub(_decimal_number_re, _expand_decimal_point, text)
     text = re.sub(_ordinal_re, _expand_ordinal, text)
     text = re.sub(_number_re, _expand_number, text)

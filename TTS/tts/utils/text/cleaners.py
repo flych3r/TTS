@@ -16,6 +16,7 @@ from .number_norm import normalize_numbers
 
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r'\s+')
+_punctuation = re.compile(r'[*(),-.:;?]')
 
 # List of (regular expression, replacement) pairs for abbreviations:
 _abbreviations = [
@@ -64,10 +65,15 @@ def remove_aux_symbols(text):
     return text
 
 
+def remove_punctuation(text):
+    text = re.sub(_punctuation, ' ', text).strip()
+    return text
+
+
 def replace_symbols(text):
-    text = text.replace(';', ',')
+    text = text.replace(';', ' ')
+    text = text.replace(':', ' ')
     text = text.replace('-', ' ')
-    text = text.replace(':', ',')
     text = text.replace('&', 'e')
     return text
 
