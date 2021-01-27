@@ -17,6 +17,7 @@ from .number_norm import normalize_numbers
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r'\s+')
 _punctuation = re.compile(r'[*(),-.:;?]')
+_url_re = re.compile(r'https?:\/\/[^\s]*')
 
 # List of (regular expression, replacement) pairs for abbreviations:
 _abbreviations = [
@@ -62,6 +63,7 @@ def convert_to_ascii(text):
 
 def remove_aux_symbols(text):
     text = re.sub(r'[\<\>\(\)\[\]\"]+', ' ', text)
+    text = re.sub(r'=[=]+', ' ', text)
     return text
 
 
@@ -70,8 +72,13 @@ def remove_punctuation(text):
     return text
 
 
+def remove_url(text):
+    return re.sub(_url_re, ' ', text)
+
+
 def replace_symbols(text):
     text = text.replace(';', ' ')
+    text = text.replace('=', 'igual a')
     text = text.replace(':', ' ')
     text = text.replace('-', ' ')
     text = text.replace('&', 'e')
@@ -119,7 +126,8 @@ def phoneme_cleaners(text):
     # text = convert_to_ascii(text)
     text = expand_numbers(text)
     text = expand_abbreviations(text)
-    text = replace_symbols(text)
+    text = remove_url(text)
     text = remove_aux_symbols(text)
+    text = replace_symbols(text)
     text = collapse_whitespace(text)
     return text
