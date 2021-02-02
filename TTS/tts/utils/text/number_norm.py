@@ -8,7 +8,7 @@ _decimal_number_re = re.compile(r'([0-9]+\.[0-9]+)')
 _reais_re = re.compile(r'R\$([0-9\.\,]*[0-9]+)')
 _time_re = re.compile(r'([0-9]+\:[0-9]+)')
 _date_re = re.compile(r'\d{1,2}\/\d{1,2}\/\d{2,4}')
-_ordinal_re = re.compile(r'[0-9]+(º|ª)')
+_ordinal_re = re.compile(r'([0-9])+(º|ª)')
 _number_re = re.compile(r'[0-9]+')
 
 _month_string = [
@@ -32,7 +32,7 @@ def _expand_number(m):
 
 
 def _expand_ordinal(m):
-    num = m.group(0)
+    num = m.group(1)
     return num2words(num, lang='pt_BR', to='ordinal')
 
 
