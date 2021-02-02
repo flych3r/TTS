@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from TTS.tts.utils.text import phoneme_to_sequence, sequence_to_phoneme
 
 
-def plot_alignment(alignment, info=None, fig_size=(16, 10), title=None):
+def plot_alignment(alignment, info=None, text=None, fig_size=(16, 10), title=None):
     if isinstance(alignment, torch.Tensor):
         alignment_ = alignment.detach().cpu().numpy().squeeze()
     else:
@@ -20,14 +20,15 @@ def plot_alignment(alignment, info=None, fig_size=(16, 10), title=None):
         xlabel += '\n\n' + info
     plt.xlabel(xlabel)
     plt.ylabel('Encoder timestep')
-    # plt.yticks(range(len(text)), list(text))
-    plt.tight_layout()
+    if text:
+        plt.yticks(range(len(text)), list(text))
     if title is not None:
         plt.title(title)
+    plt.tight_layout()
     return fig
 
 
-def plot_spectrogram(spectrogram, ap=None, fig_size=(16, 10)):
+def plot_spectrogram(spectrogram, ap=None, fig_size=(16, 10), title=None):
     if isinstance(spectrogram, torch.Tensor):
         spectrogram_ = spectrogram.detach().cpu().numpy().squeeze().T
     else:
@@ -37,6 +38,8 @@ def plot_spectrogram(spectrogram, ap=None, fig_size=(16, 10)):
     fig = plt.figure(figsize=fig_size)
     plt.imshow(spectrogram_, aspect="auto", origin="lower")
     plt.colorbar()
+    if title is not None:
+        plt.title(title)
     plt.tight_layout()
     return fig
 
